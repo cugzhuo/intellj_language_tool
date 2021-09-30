@@ -1,5 +1,5 @@
 <idea-plugin>
-    <id>com.github.cugzhuo.intelljclienttool</id>
+    <id>com.zysy.tools.intelljclienttool</id>
     <name>intellj_client_tool</name>
     <vendor>cugzhuo</vendor>
 
@@ -7,32 +7,18 @@
     <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.cugzhuo.intelljlanguagetool.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.cugzhuo.intelljlanguagetool.services.MyProjectService"/>
-        <toolWindow id="Client Tool" secondary="true" icon="AllIcons.General.Modified" anchor="bottom"
-                    factoryClass="com.github.cugzhuo.uitool.UIToolWindowFactory"/>
-    </extensions>
-
-    <applicationListeners>
-        <listener class="com.github.cugzhuo.intelljlanguagetool.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
-
     <actions>
-        <group id="Language" text="语言工具" description="快捷创建中文">
-            <add-to-group group-id="MainMenu" anchor="last"/>
-            <action id="LanguageTool"
-                    class="com.github.cugzhuo.intelljlanguagetool.LanguageSearchAction"
-                    text="测试"
-                    description="测试弹窗"/>
-        </group>
-        <group id="UI" text="界面工具" description="界面工具">
-            <add-to-group group-id="MainMenu" anchor="last"/>
-            <action id="UITool"
-                    class="com.github.cugzhuo.uitool.UIToolAction"
-                    text="测试"
-                    description="测试弹窗"/>
-        </group>
+        <action id="GenHashCodeAction" class="com.zysy.tools.Actions.GenHashCodeAction" text="[Gen Hash Code]">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="alt M"/>
+        </action>
+        <action id="AddLanguageAction" class="com.zysy.tools.Actions.AddLanguageAction" text="添加至中文表" description="添加中文">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="alt L"/>
+        </action>
+        <action id="CreatePanelAction" class="com.zysy.tools.Actions.CreatePanelAction" text="创建ui" description="创建ui">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="alt U"/>
+        </action>
     </actions>
 </idea-plugin>

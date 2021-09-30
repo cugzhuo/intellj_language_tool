@@ -1,6 +1,6 @@
-package com.github.cugzhuo;
+package com.zysy.tools;
 
-import com.github.cugzhuo.uitool.UIToolWindow;
+import com.zysy.tools.uitool.UIToolWindow;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VfsUtil;
@@ -23,7 +23,7 @@ public class FileUtils {
             return content;
         } catch (IOException e) {
             e.printStackTrace();
-            Messages.showMessageDialog("¶ÁÈ¡ÎÄ¼þÊ§°Ü£º" + uri,"¾¯¸æ", null);
+            Messages.showMessageDialog("" + uri,"", null);
             return null;
         }
     }
@@ -38,7 +38,7 @@ public class FileUtils {
             bw.close();
         } catch (IOException e) {
             e.printStackTrace();
-            Messages.showMessageDialog("Ð´ÈëÎÄ¼þÊ§°Ü: " + uri,"¾¯¸æ", null);
+            Messages.showMessageDialog("Ð´ï¿½ï¿½ï¿½Ä¼ï¿½Ê§ï¿½ï¿½: " + uri,"ï¿½ï¿½ï¿½ï¿½", null);
         }
     }
 

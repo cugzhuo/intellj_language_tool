@@ -1,6 +1,6 @@
-package com.github.cugzhuo.uitool;
+package com.zysy.tools.uitool;
 
-import com.github.cugzhuo.FileUtils;
+import com.zysy.tools.FileUtils;
 import com.intellij.openapi.ui.Messages;
 
 import java.io.UnsupportedEncodingException;
@@ -21,7 +21,7 @@ public class PanelUtils {
             return false;
         }
 
-        //插入末尾
+        //锟斤拷锟斤拷末尾
         int index = content.indexOf("}");
 
         StringBuilder new_content = new StringBuilder(content);
@@ -39,24 +39,24 @@ public class PanelUtils {
             return false;
         }
 
-        String template = "--[[{0}Root是由工具Lua/Lua Panel 节点编辑窗口 生成的！by lpp]]\n" +
-                "{0}Root={}\n" +
-                "local nodes\n" +
-                "---@type PanelNodeGetter\n" +
-                "local nodeGetter\n" +
-                "local switch = require('switch')\n" +
-                "local nodeFuncSwitch = switch:new()\n" +
-                "---@param panelView {0}\n" +
-                "function {0}Root.InitRoot(panelView,transform)\n" +
-                "end\n" +
-                "function {0}Root.ReleaseRoot(panelView)\n" +
-                "end";
-
-//        try {
-//            template = new String(template.getBytes(), "UTF-8");
-            String content = template.replace("{0}", uiName);
-
-            FileUtils.NewFile(rootFilePath, content);
+//        String template = "--[[{0}Root锟斤拷锟缴癸拷锟斤拷Lua/Lua Panel lpp]]\n" +
+//                "{0}Root={}\n" +
+//                "local nodes\n" +
+//                "---@type PanelNodeGetter\n" +
+//                "local nodeGetter\n" +
+//                "local switch = require('switch')\n" +
+//                "local nodeFuncSwitch = switch:new()\n" +
+//                "---@param panelView {0}\n" +
+//                "function {0}Root.InitRoot(panelView,transform)\n" +
+//                "end\n" +
+//                "function {0}Root.ReleaseRoot(panelView)\n" +
+//                "end";
+//
+////        try {
+////            template = new String(template.getBytes(), "UTF-8");
+//            String content = template.replace("{0}", uiName);
+//
+//            FileUtils.NewFile(rootFilePath, content);
             return true;
 
 //        } catch (UnsupportedEncodingException e) {
@@ -72,10 +72,10 @@ public class PanelUtils {
             return false;
         }
 
-        String template = "--[[{0}Ctrl是由工具生成的]]\n" +
-                "--关联界面组件脚本\n" +
+        String template = "--[[{0}Ctrl锟斤拷锟缴癸拷锟斤拷锟斤拷锟缴碉拷]]\n" +
+                "--锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷疟锟絓n" +
                 "require \"View/{0}\"\n" +
-                "--继承BaseCtrl\n" +
+                "--锟教筹拷BaseCtrl\n" +
                 "{0}Ctrl = BaseCtrl:New()\n" +
                 "\n" +
                 "local this = {0}Ctrl\n" +
@@ -92,7 +92,7 @@ public class PanelUtils {
                 "\treturn tmp\n" +
                 "end\n" +
                 "\n" +
-                "--重写\n" +
+                "--锟斤拷写\n" +
                 "function {0}Ctrl.GetUIName()\n" +
                 "\treturn UIName.{0}\n" +
                 "end\n" +
@@ -101,42 +101,42 @@ public class PanelUtils {
                 "\treturn UIType.{1}\n" +
                 "end\n" +
                 "\n" +
-                "--界面创建\n" +
+                "--锟斤拷锟芥创锟斤拷\n" +
                 "function {0}Ctrl.OnCreate(go)\n" +
                 "\tgameObject = go\n" +
                 "\ttransform = go.transform\n" +
                 "\tthis.__view = view\n" +
                 "\tluaBehaviour = gameObject:GetComponent('LuaBehaviour')\n" +
                 "\n" +
-                "\t--TODO 界面创建完成逻辑入口\n" +
+                "\t--TODO 锟斤拷锟芥创锟斤拷锟斤拷锟斤拷呒锟斤拷锟斤拷\n" +
                 "\tlog('End lua Ctrl OnCreate-->', gameObject.name)\n" +
                 "end\n" +
                 "\n" +
-                "--界面销毁\n" +
+                "--锟斤拷锟斤拷锟斤拷锟斤拷\n" +
                 "function {0}Ctrl:OnMenuDestroy()\n" +
                 "\tself:Reset()\n" +
-                "\t--lua缓存的unity实例数据，在unity实例销毁后要删除引用，才能完全释放。\n" +
+                "\t--lua锟斤拷锟斤拷锟絬nity实锟斤拷锟斤拷锟捷ｏ拷锟斤拷unity实锟斤拷锟斤拷锟劫猴拷要删锟斤拷锟斤拷锟矫ｏ拷锟斤拷锟斤拷锟斤拷全锟酵放★拷\n" +
                 "\tluaBehaviour = nil\n" +
                 "\ttransform = nil\n" +
                 "\tthis.__view = nil\n" +
                 "\tgameObject = nil\n" +
                 "\n" +
-                "\t--TODO 界面关闭后的逻辑入口\n" +
+                "\t--TODO 锟斤拷锟斤拷乇蘸锟斤拷锟竭硷拷锟斤拷锟絓n" +
                 "\tlog('destroy menu ',self.GetUIName())\n" +
                 "end\n" +
                 "\n" +
-                "--界面打开事件\n" +
+                "--锟斤拷锟斤拷锟斤拷录锟絓n" +
                 "function {0}Ctrl.EnterMenuEvents()\n" +
-                "\t--TODO打开界面Lua逻辑\n" +
+                "\t--TODO锟津开斤拷锟斤拷Lua锟竭硷拷\n" +
                 "end\n" +
                 "\n" +
-                "--界面关闭事件\n" +
+                "--锟斤拷锟斤拷乇锟斤拷录锟絓n" +
                 "function {0}Ctrl.ExitMenuEvents()\n" +
                 "end\n" +
                 "\n" +
-                "--重写结束\n" +
+                "--锟斤拷写锟斤拷锟斤拷\n" +
                 "\n" +
-                "--主要一定要放在脚本的结尾 \n" +
+                "--锟斤拷要一锟斤拷要锟斤拷锟节脚憋拷锟侥斤拷尾 \n" +
                 "return {0}Ctrl";
 //        try {
 //            template = new String(template.getBytes(), "UTF-8");
@@ -153,14 +153,14 @@ public class PanelUtils {
     }
 
     public static boolean GeneratePanelLuaFile(String uiName) {
-        //root 文件路径
+        //root 锟侥硷拷路锟斤拷
         String panelFilePath = UIToolWindow.PROJECT_PATH + String.format(UI_PANEL_PATH, uiName);
 
-        //已存在
+        //锟窖达拷锟斤拷
         if (FileUtils.ExistFile(panelFilePath)) {
             return false;
         }
-        String template = "--[[{0}是由工具生成]]\n" +
+        String template = "--[[{0}锟斤拷锟缴癸拷锟斤拷锟斤拷锟斤拷]]\n" +
                 "require \"View/ViewRoot/{0}Root\"\n" +
                 "local transform;\n" +
                 "local gameObject;\n" +
@@ -179,7 +179,7 @@ public class PanelUtils {
                 "function {0}.OnDestroy()\n" +
                 "\t\tlog(\"OnDestroy lua-- >> \",gameObject.name)\n" +
                 "\t\tCtrlManager.OnDestroyMenu(UIName.{0})\n" +
-                "\t\t--请将从unity的接口中获取的引用删除，保证对象能够释放\n" +
+                "\t\t--锟诫将锟斤拷unity锟侥接匡拷锟叫伙拷取锟斤拷锟斤拷锟斤拷删锟斤拷锟斤拷锟斤拷证锟斤拷锟斤拷锟杰癸拷锟酵凤拷\n" +
                 "\t\ttransform=nil\n" +
                 "\t\tgameObject = nil\n" +
                 "\t\t{0}Root.ReleaseRoot(this)\n" +

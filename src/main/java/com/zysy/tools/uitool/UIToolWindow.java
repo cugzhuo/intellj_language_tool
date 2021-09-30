@@ -1,4 +1,4 @@
-package com.github.cugzhuo.uitool;
+package com.zysy.tools.uitool;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
@@ -6,45 +6,14 @@ import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.*;
 import com.intellij.openapi.wm.ToolWindow;
+import com.zysy.tools.HttpTool.HttpTool;
+import com.zysy.tools.UI.UIType;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.UnsupportedEncodingException;
 
-
-enum UIType {
-    None,
-    HUDLayer,
-    BattleLayer,
-    BaseMainCityLayer,
-    BroadCastLayer,
-    MainCityHighLayer,
-    SystemBackgroundLayer,
-    SystemLayer,
-    TopNavigationLayer,
-    SystemLayerMid,
-    SystemLayerTop ,
-    ChatLayer ,
-    DialogBgLayer,
-    InteractPuzzleLayer,
-    DialogPicLayer,
-    DialogMaskingLayer,
-    DialogLayer,
-    MaltiNpcLayer,
-    AwardLayer,
-    Masked,
-    Tip ,
-    SystemUnlock,
-    FightGuide,
-    TopEffectLayer,
-    BulletScreen,
-    LoadingLayer,
-    MsgTip,
-    Layer1,
-    Layer2,
-    GameMasterLayer,
-}
 
 public class UIToolWindow {
     private JTextField uiname_text_field;
@@ -57,6 +26,7 @@ public class UIToolWindow {
     private JComboBox message_group_combo;
     private JButton btn_new_message;
     private JTextField message_tip_text_field;
+    private JPanel webViewPanel;
 
     private Project curProject;
     public static String PROJECT_PATH;
@@ -111,12 +81,12 @@ public class UIToolWindow {
         String uiName = uiname_text_field.getText();
 
         if (uiName.isEmpty()) {
-            UIToolWindow.ShowMessage("请输入UI Name");
+            UIToolWindow.ShowMessage("锟斤拷锟斤拷锟斤拷UI Name");
             return;
         }
 
         if (!uiName.contains("Panel")) {
-            UIToolWindow.ShowMessage("UI Name定义应以Panel结尾！");
+            UIToolWindow.ShowMessage("UI Name");
             return;
         }
 
@@ -124,7 +94,7 @@ public class UIToolWindow {
 
         String tips = "";
         if (nameSuccess) {
-            tips += "UI Name: " + uiName + "添加成功";
+            tips += "UI Name: " + uiName + "";
         }
 
         boolean rootSuccess = false;
@@ -138,39 +108,39 @@ public class UIToolWindow {
             panelSuccess = PanelUtils.GeneratePanelLuaFile(uiName);
 
             if (rootSuccess) {
-                tips += ("\n" + uiName + "Root.lua" + "创建成功");
+                tips += ("\n" + uiName + "Root.lua" + "");
             }
             if (ctrlSuccess) {
-                tips += ("\n" + uiName + "Ctrl.lua" + "创建成功");
+                tips += ("\n" + uiName + "Ctrl.lua" + "");
             }
             if (panelSuccess) {
-                tips += ("\n" + uiName + ".lua" + "创建成功");
+                tips += ("\n" + uiName + ".lua" + "");
             }
             UIToolWindow.ShowMessage(tips);
         }
         else if (!nameSuccess) {
-            UIToolWindow.ShowMessage("UI Name已存在");
+            UIToolWindow.ShowMessage("");
         }
 
     }
 
     private void OnBtnNewMessageDown() {
-        String message = message_text_field.getText();
-
-        if (message.isEmpty()) {
-            UIToolWindow.ShowMessage("请输入Message Name");
-            return;
-        }
-
-        String tip = message_text_field.getText();
-
-        MessageUtils.AddMessageName(message, tip);
+//        String message = message_text_field.getText();
+//
+//        if (message.isEmpty()) {
+//            UIToolWindow.ShowMessage("锟斤拷锟斤拷锟斤拷Message Name");
+//            return;
+//        }
+//
+//        String tip = message_text_field.getText();
+//
+//        MessageUtils.AddMessageName(message, tip);
     }
 
     public static void ShowMessage(String content) {
         try {
 //            content = new String(content.getBytes(), "UTF-8");
-            String title = "警告";
+            String title = "";
             title = new String(title.getBytes(), "UTF-8");
 
             Messages.showMessageDialog(content, title, null);

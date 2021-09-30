@@ -1,14 +1,25 @@
-package com.github.cugzhuo.intelljlanguagetool;
+package com.zysy.tools.UI;
+
+import com.intellij.openapi.progress.ProgressIndicator;
+import com.intellij.openapi.progress.ProgressManager;
+import com.intellij.openapi.progress.Task;
+import com.intellij.openapi.project.Project;
+import com.zysy.tools.HttpTool.HttpTool;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.event.*;
 
-public class TestDialog extends JDialog {
+public class CreateUiDlg extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
+    private JTextField textUI;
+    private JComboBox comboBoxType;
 
-    public TestDialog() {
+    private Project _project;
+
+    public CreateUiDlg(String uiName, Project project) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -39,21 +50,42 @@ public class TestDialog extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+
+        _project = project;
+
+        textUI.setText(uiName);
+
+        InitCombo();
+
+        this.setLocationRelativeTo(null);
+    }
+
+    public void InitCombo() {
+        comboBoxType.removeAllItems();
+        for (UIType type : UIType.values()) {
+            comboBoxType.addItem(type);
+        }
+
+        comboBoxType.setSelectedIndex(7);
     }
 
     private void onOK() {
         // add your code here
+        ProgressManager.getInstance().run(
+                new Task.Modal(_project, "Create UI", false){
+                    @Override
+                    public void run(@NotNull ProgressIndicator indicator) {
+                        //gen code
+                        indicator.setText("Create UI");
+                        HttpTool.DoPost("CreateUIFile", textUI.getText() + "|" + comboBoxType.getSelectedItem().toString());
+                    }
+                }
+        );
         dispose();
     }
 
     private void onCancel() {
         // add your code here if necessary
         dispose();
-    }
-
-    public static void main() {
-        TestDialog dialog = new TestDialog();
-        dialog.pack();
-        dialog.setVisible(true);
     }
 }

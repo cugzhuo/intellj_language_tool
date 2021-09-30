@@ -1,4 +1,4 @@
-package com.github.cugzhuo.uitool;
+package com.zysy.tools.uitool;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;

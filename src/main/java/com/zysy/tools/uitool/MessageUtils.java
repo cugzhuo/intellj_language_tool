@@ -1,6 +1,6 @@
-package com.github.cugzhuo.uitool;
+package com.zysy.tools.uitool;
 
-import com.github.cugzhuo.FileUtils;
+import com.zysy.tools.FileUtils;
 import com.intellij.openapi.ui.Messages;
 
 public class MessageUtils {
